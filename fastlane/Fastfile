@@ -1,0 +1,11 @@
+lane :bonjour do
+
+
+scan(
+	project: "EasyXMLParser.xcodeproj",
+	code_coverage: true
+)
+
+xcov
+
+end
