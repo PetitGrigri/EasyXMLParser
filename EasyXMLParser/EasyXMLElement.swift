@@ -9,9 +9,10 @@
 import Foundation
 
 public class EasyXMLElement : NSObject{
-    private var dico:[String:EasyXMLElement] = [String:EasyXMLElement]()
+    public var dico:[String:EasyXMLElement] = [String:EasyXMLElement]()
     public var value:Any?
     public var parent:EasyXMLElement?
+    
     
     private func isValid(key:String) -> Bool {
         if dico[key] != nil {

@@ -10,9 +10,6 @@ import UIKit
 
 public class EasyXMLParser : NSObject {
     
-    //la variable qui contiendra l'intégralité de notre fichier XML sous forme d'une collection
-    private var collectionFromXML:[String: Any]?
-    
     //la donnée à parser avec le constructeur withData
     private let parserXML: XMLParser
     
@@ -43,56 +40,30 @@ public class EasyXMLParser : NSObject {
      * Méthode qui sera appeller pour parser puis renvoyer un array contenant 
      * une ou plusieurs fois la collection demandée par l'utilisateur. 
      */
-    public func fill(collection : [String:Any]) -> [[String:Any]] {
+    public func fill(collection : [String:Any]) -> EasyXMLElement {
         
-        print("On m'a demandé de remplir avec une collection ")
+        //print("On m'a demandé de remplir avec une collection ")
+        
         parse()
         
-        print("\n\nitems : \(delegate.items["rss"]["channel"]["title"].value)")
-        
-
-        
-        
-        
-        return [["item" : ["title":  "Faites de vos QR Codes de veritables ...",
-                           "link":   "https://korben.info/de-vos-qr-codes-de-veritables-oeuvres-dart.html",
-                           "category": ["Script", "Service web", "QR Code"]]]]
-
-        
+        return delegate.items
     }
     
     
-
-    
     /*
-     * Méthode qui permettra de parser le fichier xml avec notre EasyXMLParser
+     * Méthode qui va setter le delegate de notre parser
+     * Le parser analysera ensuite notre contenu XML. Le résultat du parser sera stockée dans delegate.items
      */
     private  func parse() {
-        print("Ca y est on va parser")
+        //print("Ca y est on va parser")
         parserXML.delegate = delegate
         parserXML.parse()
         
 
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
     
     /*
     public func fill(objectName : String) -> [Any] {

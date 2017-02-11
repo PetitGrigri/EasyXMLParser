@@ -14,18 +14,17 @@ import UIKit
   *
   */
 public class EasyXMLParserDelegate: NSObject, XMLParserDelegate {
-    
-    var itemInProgress:[String] = [] // contiendra la liste le nom des éléments en cours de parcours
-    
     var items = EasyXMLElement() //va contenir la collection correspodant au xml
     
     var elementEnCours:EasyXMLElement //l'élément en cours
 
     var tempoRead:String = "" //une variable contenant la valeur d'un élément en cours de lecture
 
+    var compteurNiveau:Int = 0;
     
     override init() {
         elementEnCours = items
+        
     }
     
     /**
@@ -34,29 +33,23 @@ public class EasyXMLParserDelegate: NSObject, XMLParserDelegate {
       */
      public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]){
 
-        print("\n didStartElement : \(elementName)")
+        //debug
+        //print("\ndidStartElement : \(elementName)")
         
-        elementEnCours.parent = elementEnCours
+        var tempoELementEnCours = elementEnCours
         elementEnCours = elementEnCours[elementName]
+        elementEnCours.parent = tempoELementEnCours
         
 
-        print("elementEnCours : \(elementEnCours)")
-        print(" |=> parent : \(elementEnCours.parent)")
+        //print("elementEnCours : \(elementEnCours)")
+        
+        //compteurNiveau += 1
+        //print("  => compteurNiveau : \(compteurNiveau)")
+        //print("  => dico : \(elementEnCours.dico.keys)")
         //self.itemInProgress.append(elementName)
     }
 
-    
-    /*
-    private func getElementEnCours() -> [String : Any]{
-        //TODO
-        //TODO dans le didStart Element : vérifier si l'élément en cours existe et le créer ou le transformer en array
-        //TODO BIS ne pas oublier florent
-    }
-    */
-    
-    
-    
-    
+
     
     
     
@@ -73,13 +66,11 @@ public class EasyXMLParserDelegate: NSObject, XMLParserDelegate {
 
         elementEnCours.value = tempoRead
         
-        print("didEndElement \(elementName) : \(elementEnCours.value)")
+        //print("didEndElement \(elementName) : \(elementEnCours.value)")
+        compteurNiveau -= 1
+        //print("  => compteurNiveau : \(compteurNiveau)")
         
-        if (elementEnCours.parent != nil) {
-            elementEnCours = elementEnCours.parent!
-        } else {
-            elementEnCours = items
-        }
+        elementEnCours = elementEnCours.parent!
         
         self.tempoRead = ""
 
