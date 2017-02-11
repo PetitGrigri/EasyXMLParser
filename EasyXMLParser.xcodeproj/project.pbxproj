@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		054BDEBA1E4DB4440049D62F /* EasyXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BDEB81E4DB4440049D62F /* EasyXMLParser.swift */; };
 		054BDEBB1E4DB4440049D62F /* EasyXMLParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BDEB91E4DB4440049D62F /* EasyXMLParserDelegate.swift */; };
-		054BDEC21E4E03FA0049D62F /* Dictionary+setOrGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BDEC11E4E03FA0049D62F /* Dictionary+setOrGet.swift */; };
 		054F81131E4E68A100A819F6 /* EasyXMLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F81121E4E68A100A819F6 /* EasyXMLElement.swift */; };
 		3B7703541E43CC200059F0CD /* EasyXMLParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B77034A1E43CC200059F0CD /* EasyXMLParser.framework */; };
 		3B7703591E43CC200059F0CD /* EasyXMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7703581E43CC200059F0CD /* EasyXMLParserTests.swift */; };
@@ -29,7 +28,6 @@
 /* Begin PBXFileReference section */
 		054BDEB81E4DB4440049D62F /* EasyXMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyXMLParser.swift; sourceTree = "<group>"; };
 		054BDEB91E4DB4440049D62F /* EasyXMLParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyXMLParserDelegate.swift; sourceTree = "<group>"; };
-		054BDEC11E4E03FA0049D62F /* Dictionary+setOrGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+setOrGet.swift"; sourceTree = "<group>"; };
 		054F81121E4E68A100A819F6 /* EasyXMLElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyXMLElement.swift; sourceTree = "<group>"; };
 		3B77034A1E43CC200059F0CD /* EasyXMLParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyXMLParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B77034D1E43CC200059F0CD /* EasyXMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyXMLParser.h; sourceTree = "<group>"; };
@@ -58,14 +56,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		054BDEBE1E4DF7BF0049D62F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				054BDEC11E4E03FA0049D62F /* Dictionary+setOrGet.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		3B7703401E43CC200059F0CD = {
 			isa = PBXGroup;
 			children = (
@@ -87,7 +77,6 @@
 		3B77034C1E43CC200059F0CD /* EasyXMLParser */ = {
 			isa = PBXGroup;
 			children = (
-				054BDEBE1E4DF7BF0049D62F /* Extensions */,
 				054BDEB81E4DB4440049D62F /* EasyXMLParser.swift */,
 				054BDEB91E4DB4440049D62F /* EasyXMLParserDelegate.swift */,
 				054F81121E4E68A100A819F6 /* EasyXMLElement.swift */,
@@ -218,7 +207,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				054F81131E4E68A100A819F6 /* EasyXMLElement.swift in Sources */,
-				054BDEC21E4E03FA0049D62F /* Dictionary+setOrGet.swift in Sources */,
 				054BDEBA1E4DB4440049D62F /* EasyXMLParser.swift in Sources */,
 				054BDEBB1E4DB4440049D62F /* EasyXMLParserDelegate.swift in Sources */,
 			);

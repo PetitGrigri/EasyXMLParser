@@ -10,11 +10,10 @@ import UIKit
 
 public class EasyXMLParser : NSObject {
     
-    //la donnée à parser avec le constructeur withData
-    private let parserXML: XMLParser
     
-    //le delegate qui sera utilisé avec notre parseur
-    private let delegate:EasyXMLParserDelegate = EasyXMLParserDelegate()
+    private let parserXML: XMLParser                                        //la donnée à parser avec le constructeur withData
+    private let delegate:EasyXMLParserDelegate = EasyXMLParserDelegate()    //le delegate qui sera utilisé avec notre parseur
+    private var resultat:EasyXMLElement?
     
 
     /*
@@ -43,25 +42,23 @@ public class EasyXMLParser : NSObject {
     public func fill(collection : [String:Any]) -> EasyXMLElement {
         
         //print("On m'a demandé de remplir avec une collection ")
-        
-        parse()
-        
-        return delegate.items
+
+        return parse()
     }
     
     
     /*
      * Méthode qui va setter le delegate de notre parser
-     * Le parser analysera ensuite notre contenu XML. Le résultat du parser sera stockée dans delegate.items
+     * Le parser analysera ensuite notre contenu XML. Le résultat du parser sera stockée dans resultat
      */
-    private  func parse() {
-        //print("Ca y est on va parser")
+    public func parse() -> EasyXMLElement {
+
         parserXML.delegate = delegate
         parserXML.parse()
+        resultat = delegate.items
         
-
+        return resultat!
     }
-
 
 
     

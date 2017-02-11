@@ -14,17 +14,18 @@ import UIKit
   *
   */
 public class EasyXMLParserDelegate: NSObject, XMLParserDelegate {
-    var items = EasyXMLElement() //va contenir la collection correspodant au xml
     
-    var elementEnCours:EasyXMLElement //l'élément en cours
+    var items = EasyXMLElement(name: "root")    //va contenir la collection correspodant au xml
+    
+    var elementEnCours:EasyXMLElement           //l'élément en cours
 
-    var tempoRead:String = "" //une variable contenant la valeur d'un élément en cours de lecture
+    var tempoRead:String = ""                   //une variable contenant la valeur d'un élément en cours de lecture
 
     var compteurNiveau:Int = 0;
     
     override init() {
+        //au début de l'utilisation du parser, l'élément en cours est items, on navigera ensuite
         elementEnCours = items
-        
     }
     
     /**
@@ -33,20 +34,27 @@ public class EasyXMLParserDelegate: NSObject, XMLParserDelegate {
       */
      public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]){
 
-        //debug
-        //print("\ndidStartElement : \(elementName)")
-        
-        var tempoELementEnCours = elementEnCours
+        //On mémoriser pour utiliser l'élément en cours comme parrent
+        let tempoELementEnCours = elementEnCours
         elementEnCours = elementEnCours[elementName]
-        elementEnCours.parent = tempoELementEnCours
         
+        //print ("\nJe suis \(tempoELementEnCours.name) et je vais vérifier si elementEnCours[\(elementName)].name existe : \(elementEnCours.isValid())")
+        
+        //TODO euhhhhh pourquoi le if déjà ? 
+        
+        if (!elementEnCours.isValid()) {
+            //print("    elementEnCours[\(elementName)] n'est pas valide, je le fabrique")
+            
+            let nouveauElement = EasyXMLElement(name: elementName)
+            tempoELementEnCours.addEnfant(element: nouveauElement)
+            elementEnCours = nouveauElement
+        } else {
+            //print("    elementEnCours[\(elementName)] est valide, il contient \(elementEnCours.enfants.count) élement()")
+            let nouveauElement = EasyXMLElement(name: elementName)
+            tempoELementEnCours.addEnfant(element: nouveauElement)
+            elementEnCours = nouveauElement
+        }
 
-        //print("elementEnCours : \(elementEnCours)")
-        
-        //compteurNiveau += 1
-        //print("  => compteurNiveau : \(compteurNiveau)")
-        //print("  => dico : \(elementEnCours.dico.keys)")
-        //self.itemInProgress.append(elementName)
     }
 
 

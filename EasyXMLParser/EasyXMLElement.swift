@@ -9,31 +9,72 @@
 import Foundation
 
 public class EasyXMLElement : NSObject{
-    public var dico:[String:EasyXMLElement] = [String:EasyXMLElement]()
-    public var value:Any?
-    public var parent:EasyXMLElement?
     
+    public var enfants:[EasyXMLElement] = [EasyXMLElement]()   // les sous éléments de l'élément
+    public var value:Any?                                   // la valeur de l'élément
+    public var parent:EasyXMLElement?                       // le parent de l'élement
+    public var name:String                                  // le nom de l'élément
     
-    private func isValid(key:String) -> Bool {
-        if dico[key] != nil {
-            return true
-        }
-        return false
+    static public let noName:String = ""
+    
+    init(name: String) {
+        self.name = name
     }
+    
+    
     
     public subscript(key: String) -> EasyXMLElement {
         get {
-            if !isValid(key: key) {
-                dico[key] = EasyXMLElement()
+            var dernierEnfant = EasyXMLElement(name: EasyXMLElement.noName)
+
+            for enfant in enfants {
+                
+                if (enfant.name == key) {
+                    dernierEnfant = enfant
+                }
             }
-            return dico[key]!
-        }
-        set {
-            dico[key] = EasyXMLElement()
+            return dernierEnfant
         }
     }
     
+    
+    public func count() -> Int {
+        if let total = self.parent?.get(name: self.name).count {
+            return total
+        }
+        return 0
+    }
+    
+    public func get(name:String) -> [EasyXMLElement] {
+        var listefiltre = [EasyXMLElement]()
+        
+        for enfant in enfants {
+            if (name == enfant.name) {
+                listefiltre.append(enfant)
+            }
+        }
+        return listefiltre
+    }
+    
+    public func get() -> [EasyXMLElement] {
+        if let papa = self.parent {
+            return papa.get(name: self.name)
+        }
+        return [EasyXMLElement]()
+    }
+    
+    
+    public func addEnfant(element:EasyXMLElement) {
+        element.parent = self
+        enfants.append(element)
+    }
+    
+    public func isValid() -> Bool {
+        return (self.name != EasyXMLElement.noName)
+    }
+
+    
     override public var description: String{
-        return "dico : \(dico), value : \(value)"
+        return "Je suis \(self.name) dico : \(enfants), value : \(value)"
     }
 }
